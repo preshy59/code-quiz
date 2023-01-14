@@ -93,4 +93,4 @@ function endQuiz(){
         }
         }
      
-    
+    submitBtn.addEventListener("click", saveScores);
