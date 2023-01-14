@@ -5,10 +5,10 @@
  let submitBtn = document.querySelector("#submit");
  let questionTitleEl = document.querySelector("#question-title");
  let timeEl = document.querySelector("#time");
- let startScreenEL = document.querySelector("#start-screen");
+ let startScreenEl = document.querySelector("#start-screen");
  let endScreenEl = document.querySelector("#end-screen");
  let finalScoreEl = document.querySelector("#final-score");
- let initalsEL = document.querySelector("#initials");
+ let initalsEl = document.querySelector("#initials");
  let feedbackEl = document.querySelector("#feedback");
 
  //creating arrays of questions as an object
@@ -46,4 +46,51 @@
 
 
 ]
+
+let currentQuestion = 0;
+
+questionTitleEl.textContent = questions[0].title
+
+choiceEl.appendChild(questions[currentQuestion].option[0])
+choiceEl.appendChild(questions[currentQuestion].option[1])
+choiceEl.appendChild(questions[currentQuestion].option[2])
+choiceEl.appendChild(questions[currentQuestion].option[3])
+
+function startQuiz(){
+    setInterval(timerId);
+
+    questionEl.removeAttribute("class");
+
+    
+
+    startScreenEl.setAttribute("class", "hide");
+}
+
+
+function endQuiz(){
+    clearInterval(timerId);
+
+    endScreenEl.removeAttribute("class");
+
+    finalScoreEl.textContent = time;
+
+    questionEl.setAttribute("class", "hide");
+}
+
+// function saveScores() {
+//     //saving the value of the intial in a variable
+//     let initials = initalsEl.value;
+
+//     if (initalsEl !== "") {
+//         let highScore = JSON.parse(localStorage.getItem("highScores")) || [];
+        
+//     let newScore = {score: time, initial: initials};
+//     highScore.push(newScore);
+//     localStorage.setItem("highScore", JSON.stringify(highScore));
+
+//     location.href ="highscores.html";
+
+//     }
+//     }
  
+// submitBtn.addEventListener("click", saveScores);
