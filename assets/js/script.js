@@ -11,9 +11,7 @@
  let initalsEl = document.querySelector("#initials");
  let feedbackEl = document.querySelector("#feedback");
 
- let currentQuestion = 0;
- let time = questions.length
- let timeId;
+ 
 
  //creating arrays of questions as an object
  let questions =[
@@ -46,11 +44,11 @@
         option: ["Stringify","toFloat", "valueOf","toString"],
         answer: "toString"
     }
-
-
-
 ]
 
+let currentQuestion = 0;
+let time = questions.length
+let timeId;
 
 
 questionTitleEl.textContent = questions[0].title
@@ -85,6 +83,13 @@ function endQuiz(){
     
         questionEl.setAttribute("class", "hide");
     }
+
+// function that view the question
+function viewQuestion() {
+    let questionIndex = questions[currentQuestion];
+    questionTitleEl.textContent = questionIndex.title;
+    
+}
     
     function saveScores() {
         //saving the value of the intial in a variable
@@ -101,5 +106,16 @@ function endQuiz(){
     
         }
         }
+
+    //function that keep track of the time
+    function timer() {
+        time--;
+        timeEl.textContent = time;
+
+        if(time === 0){
+            endQuiz();
+        }
+        
+    }
      
     submitBtn.addEventListener("click", saveScores);
