@@ -11,6 +11,10 @@
  let initalsEl = document.querySelector("#initials");
  let feedbackEl = document.querySelector("#feedback");
 
+ let currentQuestion = 0;
+ let time = questions.length
+ let timeId;
+
  //creating arrays of questions as an object
  let questions =[
     {
@@ -47,7 +51,7 @@
 
 ]
 
-let currentQuestion = 0;
+
 
 questionTitleEl.textContent = questions[0].title
 
@@ -56,19 +60,24 @@ choiceEl.appendChild(questions[currentQuestion].option[1])
 choiceEl.appendChild(questions[currentQuestion].option[2])
 choiceEl.appendChild(questions[currentQuestion].option[3])
 
+//function that will kickstart the quiz
 function startQuiz(){
-    setInterval(timerId);
-
+    // removing the class hide in order to view the question
     questionEl.removeAttribute("class");
 
-    
-
+    //setting the class attribute to hide the start screen
     startScreenEl.setAttribute("class", "hide");
+    timeEl.textContent = time;
+    timeId = setInterval(timer, 1000);
+    //displaying the set questions
+    viewQuestion();
 }
 
+startBtn.addEventListener("click", startQuiz);
 
+// function that will terminate the quiz signifying its end
 function endQuiz(){
-        clearInterval(timerId);
+        clearInterval(timeId);
     
         endScreenEl.removeAttribute("class");
     
