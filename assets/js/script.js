@@ -47,16 +47,10 @@
 ]
 
 let currentQuestion = 0;
-let time = questions.length
+let time = questions.length *10;
 let timeId;
+let score = 0;
 
-
-questionTitleEl.textContent = questions[0].title
-
-choiceEl.appendChild(questions[currentQuestion].option[0])
-choiceEl.appendChild(questions[currentQuestion].option[1])
-choiceEl.appendChild(questions[currentQuestion].option[2])
-choiceEl.appendChild(questions[currentQuestion].option[3])
 
 //function that will kickstart the quiz
 function startQuiz(){
@@ -88,8 +82,40 @@ function endQuiz(){
 function viewQuestion() {
     let questionIndex = questions[currentQuestion];
     questionTitleEl.textContent = questionIndex.title;
+ 
+    choiceEl.innerHTML = "";
+    currentQuestion = 0;
     
+    questionIndex.option.forEach((option, i) => {
+
+        let optionButton = document.createElement("button");
+
+        optionButton.setAttribute("class", "option");
+        optionButton.setAttribute("value", option);
+        optionButton.appendChild(questions[currentQuestion].option[0]);
+        optionButton.appendChild(questions[currentQuestion].option[1]);
+        optionButton.appendChild(questions[currentQuestion].option[2]);
+        optionButton.appendChild(questions[currentQuestion].option[3]);
+
+
+        optionButton.onclick = () => {
+            if (questionIndex.option === answer) {
+                if(score < 10) {
+                score ++;
+                } 
+                else{
+                    time - 10;
+                }
+            }
+                finalScoreEl.textContent = score;
+                if (currentQuestion < 2) {
+                    currentQuestion ++;
+                    
+                }
+        }
+    });
 }
+viewQuestion();
     
     function saveScores() {
         //saving the value of the intial in a variable
