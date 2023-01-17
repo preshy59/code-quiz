@@ -86,19 +86,17 @@ function viewQuestion() {
     choiceEl.innerHTML = "";
     currentQuestion = 0;
     
-    questionIndex.option.forEach((option, i) => {
+    questionIndex.options.forEach((options, i) => {
 
         let optionButton = document.createElement("button");
 
-        optionButton.setAttribute("class", "option");
-        optionButton.setAttribute("value", option);
-        optionButton.appendChild(questions[currentQuestion].option[0]);
-        optionButton.appendChild(questions[currentQuestion].option[1]);
-        optionButton.appendChild(questions[currentQuestion].option[2]);
-        optionButton.appendChild(questions[currentQuestion].option[3]);
+        optionButton.setAttribute("class", "options");
+        optionButton.setAttribute("value", options);
 
-
-        optionButton.onclick = () => {
+        optionButton.textContent = options;
+        choiceEl.appendChild(optionButton);
+   
+         optionButton.onclick = () => {
             if (questionIndex.option === answer) {
                 if(score < 10) {
                 score ++;
