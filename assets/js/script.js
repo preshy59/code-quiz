@@ -97,23 +97,26 @@ function viewQuestion() {
         choiceEl.appendChild(optionButton);
    
          optionButton.onclick = () => {
-            if (questionIndex.option === answer) {
+            if (questionIndex.option === questionIndex.answer) {
                 if(score < 10) {
                 score ++;
                 } 
                 else{
                     time - 10;
                 }
-            }
+            
                 finalScoreEl.textContent = score;
-                if (currentQuestion < 2) {
+            }
+                if (currentQuestion < 5) {
                     currentQuestion ++;
                     
                 }
+                viewQuestion();
         }
     });
+    
 }
-viewQuestion();
+
     
     function saveScores() {
         //saving the value of the intial in a variable
