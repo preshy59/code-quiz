@@ -128,6 +128,7 @@ function clickOption() {
         feedbackEl.setAttribute("class", "hide");
     }, displayTime);
     currentQuestion++;
+    
     if (currentQuestion === questions.length) {
         endQuiz()
 
