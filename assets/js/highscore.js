@@ -9,10 +9,10 @@ for (let i = 0; i < highScores.length; i++) {
 }
 
 // Clear the localStorage
-function clearStorage() {
+function emptyStorage() {
   localStorage.clear();
   highScoresList.innerHTML = "";
 }
 // Add event listener to Clear Highscores buttons
 let clearBtn = document.querySelector("#clear");
-clearBtn.addEventListener("click", clearStorage);
+clearBtn.addEventListener("click", emptyStorage);
